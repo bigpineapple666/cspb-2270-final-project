@@ -1,0 +1,1 @@
+// implementation of minimal perfect hash function

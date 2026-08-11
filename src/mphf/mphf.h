@@ -1,0 +1,1 @@
+// header for minimal perfect hash function
