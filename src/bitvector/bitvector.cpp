@@ -9,11 +9,13 @@ BitVector::BitVector(size_t n){
 
 // setter
 void BitVector::set(size_t i){
+    // bitwise OR
     a[i >> 6] |= uint64_t(1) << (i & 63);
 }
 
 // clear vec
 void BitVector::clear(size_t i){
+    // bitwise AND
     a[i >> 6] &= ~(uint64_t(1) << (i & 63));
 }
 

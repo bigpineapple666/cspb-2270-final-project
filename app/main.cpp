@@ -16,7 +16,8 @@ int main(){
     cout << endl;
     //// bitvectors
     cout << "Bitvector: testing and understanding" << endl;
-    BitVector b = BitVector(2 << 8);
+    BitVector b = BitVector(2 << 7);
+    b.set(65);
     for (int i=0; i < b.a.size(); i++) {
         cout << b.a[i] << " ";
     }
