@@ -10,5 +10,11 @@ add_library(tensor STATIC
 )
 target_include_directories(tensor PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
+add_library(bitvector STATIC 
+    src/bitvector/bitvector.cpp
+    src/bitvector/bitvector.h
+)
+target_include_directories(bitvector PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
+
 add_executable(myapp app/main.cpp)
-target_link_libraries(myapp PRIVATE tensor)
+target_link_libraries(myapp PRIVATE tensor bitvector)
