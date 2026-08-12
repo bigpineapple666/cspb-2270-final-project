@@ -22,3 +22,6 @@ TensorData* init_tensor_rand(std::vector<int> dimensions);
 
 // and then as bonus points, from GGUF, a standard filetype for storing LLM tensors
 TensorData* init_tensor_gguf(std::vector<int> dimensions);
+
+// helper for printing tensors
+void print_tensor_data(TensorData* in_tensor);
