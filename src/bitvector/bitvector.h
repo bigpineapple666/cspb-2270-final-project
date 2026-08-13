@@ -4,10 +4,12 @@
 // this module is dedicated to building bitvectors
 #include <cstdint>
 #include <vector>
+#include <bit>
 
 // define bitvector type
 struct BitVector {
     std::vector<uint64_t> a;
+    std::vector<uint64_t> rank9_idx;
     size_t nbits;
     // constructer
     BitVector(size_t n);
