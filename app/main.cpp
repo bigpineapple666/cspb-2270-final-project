@@ -18,9 +18,11 @@ int main(){
     cout << "Bitvector: testing and understanding" << endl;
     BitVector b = BitVector(2 << 7);
     b.set(65);
-    for (int i=0; i < b.rank9_idx.size(); i++) {
-        cout << b.rank9_idx[i] << " ";
+    for (int i=0; i < b.bits.size(); i++) {
+        cout << b.bits[i] << " ";
     }
     cout << endl;
+    b.build_rank9();
+    cout << b.rank9(2 << 7) << endl;
     return 0;
 }
