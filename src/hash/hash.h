@@ -5,7 +5,7 @@
 #include <cstddef>
 #include <vector>
 #include <unordered_map>
-#include "bitvector/bitvector.h"
+#include <bitvector/bitvector.h>
 
 // skeleton MPHF
 class MPHF {
@@ -19,8 +19,8 @@ public:
     // constructors
     MPHF() = default;
     MPHF(const std::vector<uint64_t>& keys,
-         double gamma = 2.0,
-         uint64_t seed = 0x9E3779B97F4A7C15ULL);
+         double __gamma = 2.0,
+         uint64_t __seed = 0x9E3779B97F4A7C15ULL);
     
     // lookup a key
     uint64_t lookup(uint64_t key);
@@ -34,7 +34,13 @@ public:
     double bits_per_key();
 
     static uint64_t mix(uint64_t key, uint64_t s);
-    uint8_t MPHF::fingerprint(uint64_t key);
+
+    // fingerprinting
+    uint8_t fingerprint(uint64_t key);
+    
+    // prehashing function
+    uint64_t fnv1a_32(const void* data, size_t len);
+
 
 private:
     BitVector bv;

@@ -16,7 +16,7 @@
 #include "hash.h"
 
 // constructor: in a MPHF, the keys are preknown
-// implementation as per BBHash
+// implementation as per BBHash:
 
 void MPHF::build(const std::vector<uint64_t>& keys) {
     if (keys.empty()) return;
@@ -67,9 +67,17 @@ void MPHF::build(const std::vector<uint64_t>& keys) {
 
     if (next != nkeys) return;
 }
+// invoking the construction with build logic
+MPHF::MPHF(const std::vector<uint64_t>& keys, double __gamma, uint64_t __seed) {
+    gamma = __gamma;
+    seed = __seed;
+    build(keys);
+}
 
 // mixing, as per BBHash
 uint64_t MPHF::mix(uint64_t x, uint64_t s) {
+    // each of these funky looking numbers is a magic hashing number for 
+    // fast hashing
     x += s * 0x9E3779B97F4A7C15ULL;
     x = (x ^ (x >> 30)) * 0xBF58476D1CE4E5B9ULL;
     x = (x ^ (x >> 27)) * 0x94D049BB133111EBULL;
@@ -79,6 +87,18 @@ uint64_t MPHF::mix(uint64_t x, uint64_t s) {
 // fingerprinting, see readme
 uint8_t MPHF::fingerprint(uint64_t key){
     return uint8_t(MPHF::mix(key, seed ^ 0xD1B54A32D192ED03ULL));
+}
+
+// prehashing function, to go from string data to bits
+// for this we used FNV1A: https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function
+uint64_t MPHF::fnv1a_32(const void* data, size_t len) {
+    uint64_t hash = 2166136261u;
+    const uint8_t* p = (const uint8_t*)data;
+    for (size_t i = 0; i < len; i++) {
+        hash ^= p[i];
+        hash *= 16777619u;
+    }
+    return hash;
 }
 
 // lookup a key
