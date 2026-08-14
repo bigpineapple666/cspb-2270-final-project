@@ -37,9 +37,6 @@ public:
 
     // fingerprinting
     uint8_t fingerprint(uint64_t key);
-    
-    // prehashing function
-    uint64_t fnv1a_32(const void* data, size_t len);
 
 
 private:
@@ -53,3 +50,6 @@ private:
     
     void build(const std::vector<uint64_t>& keys);
 };
+
+// prehashing function, not a class member, just for preprocessing
+uint64_t fnv1a_32(const void* data, size_t len);

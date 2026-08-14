@@ -23,6 +23,9 @@ class BitVector {
         // get bit
         bool get(size_t i);
 
+        // get nbits
+        size_t getNBits();
+
         // rank9 algorithim
         void build_rank9();
         uint64_t rank9(uint64_t bit_idx);

@@ -1,5 +1,5 @@
 #include <tensor/tensor.h>
-#include <bitvector/bitvector.h>
+#include <tensormap/tensormap.h>
 #include <vector>
 #include <iostream>
 

@@ -16,5 +16,17 @@ add_library(bitvector STATIC
 )
 target_include_directories(bitvector PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
+add_library(hash STATIC 
+    src/hash/hash.cpp
+    src/hash/hash.h
+)
+target_include_directories(hash PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
+
+add_library(tensormap STATIC 
+    src/tensormap/tensormap.cpp
+    src/tensormap/tensormap.h
+)
+target_include_directories(tensormap PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
+
 add_executable(myapp app/main.cpp)
-target_link_libraries(myapp PRIVATE tensor bitvector)
+target_link_libraries(myapp PRIVATE tensor bitvector hash tensormap)

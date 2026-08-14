@@ -24,9 +24,14 @@ void BitVector::clear(size_t i){
     bits[i >> 6] &= ~(uint64_t(1) << (i & 63));
 }
 
-// getter
+// getter for individual bits
 bool BitVector::get(size_t i){
     return (bits[i >> 6] >> (i & 63)) & 1;
+}
+
+// get nbits
+size_t BitVector::getNBits(){
+    return nbits;
 }
 
 // rank9 implementation

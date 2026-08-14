@@ -21,9 +21,9 @@
 void MPHF::build(const std::vector<uint64_t>& keys) {
     if (keys.empty()) return;
 
+    // set levels for MPHF
     std::vector<uint64_t> remaining = keys;
     std::vector<BitVector> levels;          // one array per level, kept to concatenate
-
     for (unsigned int l = 0; l < MAX_LEVELS && !remaining.empty(); ++l) {
         const size_t m = std::max<size_t>(1, size_t(gamma * remaining.size()) + 1);
 
@@ -50,7 +50,7 @@ void MPHF::build(const std::vector<uint64_t>& keys) {
         remaining.swap(survivors);
     }
 
-    // Concatenate every level into one bit vector, record offsets.
+    // Concatenate every level into one bit vector, record offsets
     size_t total = 0;
     for (size_t m : level_sizes) { level_offsets.push_back(total); total += m; }
 
@@ -61,11 +61,12 @@ void MPHF::build(const std::vector<uint64_t>& keys) {
 
     bv.build_rank9();
 
-    // Anything still unplaced after MAX_LEVELS gets an explicit entry.
+    // Anything still unplaced after MAX_LEVELS gets an explicit entry
     uint64_t next = bv.rank9(total);  
     for (uint64_t k : remaining) fallback[k] = next++;
 
     if (next != nkeys) return;
+
 }
 // invoking the construction with build logic
 MPHF::MPHF(const std::vector<uint64_t>& keys, double __gamma, uint64_t __seed) {
@@ -82,23 +83,6 @@ uint64_t MPHF::mix(uint64_t x, uint64_t s) {
     x = (x ^ (x >> 30)) * 0xBF58476D1CE4E5B9ULL;
     x = (x ^ (x >> 27)) * 0x94D049BB133111EBULL;
     return x ^ (x >> 31);
-}
-
-// fingerprinting, see readme
-uint8_t MPHF::fingerprint(uint64_t key){
-    return uint8_t(MPHF::mix(key, seed ^ 0xD1B54A32D192ED03ULL));
-}
-
-// prehashing function, to go from string data to bits
-// for this we used FNV1A: https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function
-uint64_t MPHF::fnv1a_32(const void* data, size_t len) {
-    uint64_t hash = 2166136261u;
-    const uint8_t* p = (const uint8_t*)data;
-    for (size_t i = 0; i < len; i++) {
-        hash ^= p[i];
-        hash *= 16777619u;
-    }
-    return hash;
 }
 
 // lookup a key
@@ -124,10 +108,22 @@ size_t MPHF::levels() {
 
 // get bit count
 size_t MPHF::bit_count() {
-    return bv.nbits
+    return bv.getNBits()
 }
 
 // return bits per key
 double MPHF::bits_per_key() { 
     return double(bit_count()) / nkeys; 
+}
+
+// prehashing function, to go from string data to bits
+// for this we used FNV1A: https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function
+uint64_t fnv1a_64(const void* data, size_t len) {
+    uint64_t hash = 2166136261u;
+    const uint8_t* p = (const uint8_t*)data;
+    for (size_t i = 0; i < len; i++) {
+        hash ^= p[i];
+        hash *= 16777619u;
+    }
+    return hash;
 }
