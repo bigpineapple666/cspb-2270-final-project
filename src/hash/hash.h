@@ -9,29 +9,41 @@
 
 // skeleton MPHF
 class MPHF {
+
+// public functions
 public:
+    // MPHF requires levels for bits to entirely reduce collisions
+    // this defines specifically the maximum number of levels
     static constexpr unsigned MAX_LEVELS = 25;
 
+    // constructors
     MPHF() = default;
     MPHF(const std::vector<uint64_t>& keys,
          double gamma = 2.0,
          uint64_t seed = 0x9E3779B97F4A7C15ULL);
+    
+    // lookup a key
+    uint64_t lookup(uint64_t key);
+    
+    // get the total number of keys
+    size_t size();
 
-    uint64_t lookup(uint64_t key) const;
+    // return the tol
+    size_t levels();
+    size_t bit_count();
+    double bits_per_key();
 
-    size_t size()      const { return nkeys; }
-    size_t levels()    const { return level_sizes.size(); }
-    size_t bit_count() const;              // for your space measurements
-    double bits_per_key() const { return double(bit_count()) / nkeys; }
+    static uint64_t mix(uint64_t key, uint64_t s);
+    uint8_t MPHF::fingerprint(uint64_t key);
 
 private:
-    BitVector bv;                         
+    BitVector bv;
+    size_t nkeys;                       
     std::vector<size_t> level_offsets;     
     std::vector<size_t> level_sizes;       
     std::unordered_map<uint64_t, uint64_t> fallback;  
     uint64_t seed  = 0;
     double gamma = 2.0;
-
-    static uint64_t mix(uint64_t key, uint64_t s);
+    
     void build(const std::vector<uint64_t>& keys);
 };
