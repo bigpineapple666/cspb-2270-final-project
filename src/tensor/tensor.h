@@ -1,6 +1,7 @@
 // this header file will house all data structure information around tensors
 // What is this module for?
 // Tensor is the data structure we will be using to store tensor data in our mphf structure
+#pragma once
 #include <vector>
 
 // first define the tensor type as a 3 dimensional vector

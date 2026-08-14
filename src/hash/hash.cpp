@@ -108,7 +108,7 @@ size_t MPHF::levels() {
 
 // get bit count
 size_t MPHF::bit_count() {
-    return bv.getNBits()
+    return bv.getNBits();
 }
 
 // return bits per key

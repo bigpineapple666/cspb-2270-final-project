@@ -30,6 +30,6 @@ class TensorMap {
         uint64_t seed;
         
         // values in the hash map
-        std::vector<TensorData> values
+        std::vector<TensorData> values;
 
-}
+};
