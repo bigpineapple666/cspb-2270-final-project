@@ -35,9 +35,6 @@ public:
 
     static uint64_t mix(uint64_t key, uint64_t s);
 
-    // fingerprinting
-    uint8_t fingerprint(uint64_t key);
-
 
 private:
     BitVector bv;
@@ -52,4 +49,4 @@ private:
 };
 
 // prehashing function, not a class member, just for preprocessing
-uint64_t fnv1a_32(const void* data, size_t len);
+uint64_t fnv1a_64(const void* data, size_t len);

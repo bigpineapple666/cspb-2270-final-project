@@ -10,7 +10,7 @@ class TensorMap {
 
     public:
         // construtor - enter keys and tensor data
-        TensorMap(const std::vector<std::string>& keys, std::vector<TensorData> tensors,
+        TensorMap(const std::vector<std::string>& keys, std::vector<TensorData*> tensors,
            double gamma = 2.0, uint64_t seed = 0x9E3779B97F4A7C15ULL);
 
         // destructor
@@ -30,6 +30,6 @@ class TensorMap {
         uint64_t seed;
         
         // values in the hash map
-        std::vector<TensorData> values;
+        std::vector<TensorData*> values;
 
 };

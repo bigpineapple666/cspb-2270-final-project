@@ -2,6 +2,7 @@
 // in order to implement our minimal perfect hash function, 
 // for fingerprinting we must use bitvectors
 // this module is dedicated to building bitvectors
+#pragma once
 #include <cstdint>
 #include <vector>
 
