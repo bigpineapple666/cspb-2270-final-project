@@ -12,7 +12,7 @@ struct TensorData {
     std::vector<float> data;   
     std::vector<size_t> shape;    
 
-    // constructor just makes a tensor of zeros
+    // constructor makes a tensor of random floats in [-0.5, 0.5)
     TensorData() = default;
     TensorData(std::vector<size_t> shape);
 
