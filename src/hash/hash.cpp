@@ -16,7 +16,7 @@
 #include "hash.h"
 
 // constructor: in a MPHF, the keys are preknown
-// implementation as per BBHash:
+// implementation as per BBHash: https://github.com/rizkg/BBHash
 
 void MPHF::build(const std::vector<uint64_t>& keys) {
     if (keys.empty()) return;

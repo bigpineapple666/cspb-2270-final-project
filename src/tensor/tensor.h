@@ -4,25 +4,18 @@
 #pragma once
 #include <vector>
 
-// first define the tensor type as a 3 dimensional vector
-typedef  std::vector<std::vector<std::vector<float>>> tensor;
-
-// then our data packet, this is the structure we will use to store tensor data
+// after doing some research, I found a simple and very interesting technique
+// for implementing tensors, you just treat the whole thing as one flat array!
+// crazy!! but is definetly the most space efficient way to do this, then
+// we just modify the functions around it
 struct TensorData {
-    // the tensor data (3 dimensional vector for LLM tensors)
-    tensor t;
-    // its dimensions
-    std::vector<int> dims;
+    std::vector<float> data;   
+    std::vector<size_t> shape;    
+
+    // constructor just makes a tensor of zeros
+    TensorData() = default;
+    TensorData(std::vector<size_t> shape);
+
+    // print tensor data
+    void print();
 };
-
-// for our first function, we will create a tensor of zeros
-TensorData* init_tensor_zeros(std::vector<int> dimensions);
-
-// a tensor of random numbers
-TensorData* init_tensor_rand(std::vector<int> dimensions);
-
-// and then as bonus points, from GGUF, a standard filetype for storing LLM tensors
-TensorData* init_tensor_gguf(std::vector<int> dimensions);
-
-// helper for printing tensors
-void print_tensor_data(TensorData* in_tensor);

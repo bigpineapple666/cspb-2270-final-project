@@ -5,14 +5,21 @@
 
 using namespace std;
 
-int main(){
-    // tensor data
+void basic_tensor_test1() {
     cout << "Tensor data init" << endl;
-    vector<int> tensor_dim = {5,4,1024};
-    TensorData* t_data = init_tensor_zeros(tensor_dim);
-    print_tensor_data(t_data);
+    TensorData tensor({1,2,3});
+    tensor.print();
     cout << "Complete!" << endl;
     cout << "=========================================" << endl;
     cout << endl;
+}
+
+void mphf_tensor_small_test() {
+    
+}
+
+int main(){
+    // tensor data
+    basic_tensor_test1();
     return 0;
 }
