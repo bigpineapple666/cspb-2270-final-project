@@ -34,3 +34,10 @@ full of gaps and would waste most of an array. Calling rank9 on it counts the se
 bits before it, which renumbers every key into a tight range from 0 to the number
 of keys. That number is what we return, and Tensor Map uses this number as the index to fetch its given value.
 
+## Counting bits
+
+As a part of this data structure, we of course want to count the total number of bits this structure takes up as well as the number of bits per key, since this is the overall goal and what MPHF does best. So, we have added some helper functions for our application to help us benchmark performance.
+
+- `MPHF::bit_count()` — gets the bit count from the bitvector (bitvector also has a method to assist with this).
+- `MPHF::size()` — the total number of keys.
+- `MPHF::bits_per_key()` — divides the two above and gives us the number we care about for implementation performance, the one that should land near 3 at a gamma of 2.
