@@ -61,11 +61,9 @@ void basic_tensor_test1() {
     tensor.print();
 }
 
-void mphf_tensor_demo() {
+void mphf_tensor_demo(const int SIZE) {
 
-    // initizalization
-    const int SIZE = 5;
-    vector<size_t> tensor_shape = {2<<2, 2<<10, 2<<10};
+    vector<size_t> tensor_shape = {2<<2, 2<<7, 2<<7};
 
     section("MPHF tensor map demo");
 
@@ -215,7 +213,12 @@ void fetch_benchmark() {
 
 int main(){
     // tensor data
-    mphf_tensor_demo();
+    string input;
+    int size = 1;
+    cout << "Please enter the number of tensors you would like to run the demo on (Integer, ideally less than 1000): ";
+    cin >> input;
+    size = stoi(input);
+    mphf_tensor_demo(size);
     fetch_benchmark();
     return 0;
 }
