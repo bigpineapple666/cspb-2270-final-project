@@ -1,6 +1,6 @@
 # My Data Structures Final Project - On-disk tensors with MPHF (minimal perfect hash function)
 
-Welcome to Joe's (my) final project. For my final project I chose to implement a minimal perfect hash function, with the purpose of storing tensor data on ones disk. In proposing this project, my goal with this data structure was to optimize lookup time for neural network structures between the disk and active memory to optimize utilization of active memory (in RAM or VRAM). 
+Welcome to Joe's (my) final project. For my final project I chose to implement a minimal perfect hash function (MPHF), with the purpose of storing tensor data on ones disk. In proposing this project, my goal with this data structure was to optimize lookup time for neural network structures between the disk and active memory to optimize utilization of active memory (in RAM or VRAM). 
 
 # What is the goal of this project?
 
