@@ -41,3 +41,5 @@ As well as FNV-a1 hashing for prehashing strings to uint64 https://en.wikipedia.
 All of the logic for bitvector as well as bit counts can be found in the README.md under bitvector.
 
 Many of the concepts in this project go a bit above what we studied in this course, so I had to do a fair amount of extra research when building this out, for this I used extranious sources from the internet, as well as LLMs to help me learn the concepts and build out the algorithms.
+
+I also used LLMs to help me create some visual aids in the readme docs to help others grasp the more complex ideas with this data structure.

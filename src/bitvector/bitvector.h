@@ -15,16 +15,16 @@ class BitVector {
         BitVector() = default;
         BitVector(size_t n);
         
-        // set bit
+        // bit setter (see README.md)
         void set(size_t i);
 
-        // clear bits
+        // clear bits (see README.md)
         void clear(size_t i);
 
-        // get bit
+        // get bit (see README.md)
         bool get(size_t i);
 
-        // get nbits
+        // get nbits (see README.md)
         size_t getNBits();
 
         // rank9 algorithim
