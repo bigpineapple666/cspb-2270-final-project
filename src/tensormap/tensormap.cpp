@@ -1,5 +1,6 @@
 #include "tensormap.h"
 #include <iostream>
+#include <iomanip>
 
 
 // constructor implementation
@@ -41,10 +42,13 @@ size_t TensorMap::size() {
 }
 
 void TensorMap::getBits() {
-    std::cout << "MPHF Total nBits: " << mphf.bit_count() << std::endl;
-    std::cout << "MPHF Bits per key: " << mphf.bits_per_key() << std::endl;
-
+    size_t mphf_bits = mphf.bit_count();
     size_t tensor_bits = values.size() * sizeof(TensorData) * CHAR_BIT;
 
-    std::cout << "Tensor Map total size: " << tensor_bits + mphf.bit_count() << std::endl;
+    // left aligned labels so the numbers line up in a column
+    std::cout << std::left;
+    std::cout << "    " << std::setw(22) << "MPHF total bits"   << mphf_bits << std::endl;
+    std::cout << "    " << std::setw(22) << "MPHF bits per key" << mphf.bits_per_key() << std::endl;
+    std::cout << "    " << std::setw(22) << "Tensor handle bits" << tensor_bits << std::endl;
+    std::cout << "    " << std::setw(22) << "Total map bits"    << mphf_bits + tensor_bits << std::endl;
 }

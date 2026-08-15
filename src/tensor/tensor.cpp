@@ -25,7 +25,10 @@ TensorData::TensorData(std::vector<size_t> __shape){
 
 void TensorData::print() {
     // cout the shape only
-    std::cout << "(shape = [";
-    for(int i=0; i<shape.size(); i++) std::cout << shape[i] << ",";
-    std::cout << "])" << std::endl;
+    std::cout << "shape = [";
+    for (size_t i = 0; i < shape.size(); i++) {
+        std::cout << shape[i];
+        if (i + 1 < shape.size()) std::cout << ", ";
+    }
+    std::cout << "], " << data.size() << " elements" << std::endl;
 }
