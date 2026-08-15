@@ -76,7 +76,7 @@ MPHF::MPHF(const std::vector<uint64_t>& keys, double __gamma, uint64_t __seed) {
     build(keys);
 }
 
-// mixing, as per BBHash
+// mixing, using splitmix64: https://github.com/indiesoftby/defold-splitmix64
 uint64_t MPHF::mix(uint64_t x, uint64_t s) {
     // each of these funky looking numbers is a magic hashing number for 
     // fast hashing
