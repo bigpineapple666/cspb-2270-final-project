@@ -16,6 +16,7 @@ While this data structure does not allow you to write to the disk directly, I fe
 To run this project, there is a simple main app that you can run through cmake.
 In order to run, use the following commands:
 
+```
 mkdir build && cd build
 
 cmake ..
@@ -23,6 +24,7 @@ cmake ..
 make
 
 ./tensor_mphf
+```
 
 This application runs a suite of benchmarks where you can play with how keys in our minimal perfect hash map optimize on memory at scale, and compare lookup times on MPHF vs an unordered map and a linear search on the same data corpus.
 
