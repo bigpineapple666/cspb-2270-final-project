@@ -40,7 +40,7 @@ void basic_tensor_test1() {
 void mphf_tensor_small_test() {
 
     // initizalization
-    const int SIZE = 5;
+    const int SIZE = 500;
     
     
     cout << "Initializing " << SIZE << "keys... " << endl;
@@ -57,7 +57,12 @@ void mphf_tensor_small_test() {
     d.reserve(SIZE);
 
     // then initialize via emplace_back
-    for (int j=0; j<SIZE; j++) d.emplace_back(tensor_shape);
+    for (int j=0; j<SIZE; j++) {
+        if (j%2) cout << "#";
+        d.emplace_back(tensor_shape);
+    }
+    cout << endl;
+    
 
     cout << "Done." <<endl;
 
@@ -72,6 +77,9 @@ void mphf_tensor_small_test() {
     TensorData testfetch = map->fetchTensor(keys[0]);
     testfetch.print();
     cout << "Done." << endl;
+
+    cout << "Getting bit size (main point of this struct)" << endl;
+    map->getBits();
 }
 
 int main(){

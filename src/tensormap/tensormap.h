@@ -22,6 +22,9 @@ class TensorMap {
         // get size of table
         size_t size();
 
+        // print the total bit size of the structure
+        void getBits();
+
     private:
         // minimal perfect hash function
         MPHF mphf;
