@@ -30,5 +30,5 @@ add_library(tensormap STATIC
 target_include_directories(tensormap PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
 target_link_libraries(tensormap PUBLIC hash)
 
-add_executable(myapp app/main.cpp)
-target_link_libraries(myapp PRIVATE tensor tensormap)
+add_executable(tensor_mphf app/main.cpp)
+target_link_libraries(tensor_mphf PRIVATE tensor tensormap)
