@@ -6,8 +6,6 @@ While in this project we are using MPHF for more of a hybrid purpose, the main g
 
 Packing bits into a vector is actually a fairly complicated process. The most intuitive thing may seem to just create a boolean array of 1s and 0s, but this does not truely pack bits in a size efficient manor into a vector. Instead, we used uint64_t, or a 64 bit integer, and manipulate its binary representation. In addition to packing, we also need to perform operations on the binary representation to make use of it for getting and setting keys, thus we defined 3 functions `set(i)`, `get(i)`, and `clear(i)` to help us do this, using bitshifting operations. I have provided diagrams below on specifically what each function does.
 
-Also these functions are purely informational for explaining a bit vector structure in lieu of Rank9, and are not used in the minimal perfect hashing algorithm at all, I just thought they were useful to help me learn more about bitvectors and applicable to the project.
-
 ### `set(i)` — turn a bit on
 
 `set` builds a mask with a single 1 at offset `i` and ORs it into the word. OR

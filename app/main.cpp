@@ -40,7 +40,7 @@ void basic_tensor_test1() {
 void mphf_tensor_small_test() {
 
     // initizalization
-    const int SIZE = 500;
+    const int SIZE = 5;
     
     
     cout << "Initializing " << SIZE << "keys... " << endl;

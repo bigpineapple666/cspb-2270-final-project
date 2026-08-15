@@ -33,16 +33,16 @@ void MPHF::build(const std::vector<uint64_t>& keys) {
         for (uint64_t k : remaining) {
             const size_t p = mix(k, seed + l) % m;
             if (taken.get(p)) collided.set(p);
-            else              taken.set(p);
+            else taken.set(p);
         }
 
-        // Pass 2: a key is placed iff its slot was hit exactly once.
+        // Pass 2: a key is placed if its slot was hit exactly once.
         BitVector level(m);
         std::vector<uint64_t> survivors;
         for (uint64_t k : remaining) {
             const size_t p = mix(k, seed + l) % m;
             if (collided.get(p)) survivors.push_back(k);
-            else                 level.set(p);
+            else level.set(p);
         }
 
         level_sizes.push_back(m);
@@ -64,8 +64,6 @@ void MPHF::build(const std::vector<uint64_t>& keys) {
     // Anything still unplaced after MAX_LEVELS gets an explicit entry
     uint64_t next = bv.rank9(total);  
     for (uint64_t k : remaining) fallback[k] = next++;
-
-    if (next != nkeys) return;
 
 }
 // invoking the construction with build logic
