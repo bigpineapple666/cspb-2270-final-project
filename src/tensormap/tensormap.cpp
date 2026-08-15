@@ -1,10 +1,12 @@
 #include "tensormap.h"
+#include <iostream>
 
 
 // constructor implementation
 TensorMap::TensorMap(const std::vector<std::string>& keys, std::vector<TensorData> tensors, 
     double gamma, uint64_t seed) {
         // we first need to prehash strings keys into 64 bit integers
+        std::cout << tensors.size() << std::endl;
         if (keys.size() != tensors.size()) return;
         std::vector<uint64_t> prehashed_keys;
         prehashed_keys.reserve(keys.size());
@@ -15,6 +17,7 @@ TensorMap::TensorMap(const std::vector<std::string>& keys, std::vector<TensorDat
 
         // then we can construct mphf
         mphf = MPHF(prehashed_keys, gamma, seed);
+        std::cout << "after assign: " << mphf.size() << "\n";
         
         values.resize(keys.size());
 

@@ -40,7 +40,7 @@ void basic_tensor_test1() {
 void mphf_tensor_small_test() {
 
     // initizalization
-    const int SIZE = 500;
+    const int SIZE = 5;
     
     
     cout << "Initializing " << SIZE << "keys... " << endl;
@@ -57,7 +57,7 @@ void mphf_tensor_small_test() {
     d.reserve(SIZE);
 
     // then initialize via emplace_back
-    d.emplace_back(tensor_shape);
+    for (int j=0; j<SIZE; j++) d.emplace_back(tensor_shape);
 
     cout << "Done." <<endl;
 

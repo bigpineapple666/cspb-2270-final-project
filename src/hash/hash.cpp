@@ -70,6 +70,7 @@ void MPHF::build(const std::vector<uint64_t>& keys) {
 }
 // invoking the construction with build logic
 MPHF::MPHF(const std::vector<uint64_t>& keys, double __gamma, uint64_t __seed) {
+    nkeys = keys.size();
     gamma = __gamma;
     seed = __seed;
     build(keys);
