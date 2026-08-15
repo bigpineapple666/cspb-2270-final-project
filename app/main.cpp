@@ -49,7 +49,7 @@ void mphf_tensor_small_test() {
     // print initialization message
     cout << "Initializing " << SIZE << " Tensors of size: ";
     vector<size_t> tensor_shape = {2<<2, 2<<10, 2<<10};
-    vector<TensorData*> d;
+    vector<TensorData> d;
     for (int i=0; i<tensor_shape.size(); i++) cout << tensor_shape[i] << " ";
     cout << endl;
 
@@ -64,9 +64,14 @@ void mphf_tensor_small_test() {
     cout << "Initializing custom tensor map with MPHF" << endl;
     // init tensor map
     TensorMap* map (new TensorMap(keys, d));
-    
+    cout << "Size: " << map->size() << endl;
     cout << "Done." << endl;
+    // test fetching one of these tensors
 
+    cout << "Testing fetch of tensor..." << endl;
+    TensorData testfetch = map->fetchTensor(keys[0]);
+    testfetch.print();
+    cout << "Done." << endl;
 }
 
 int main(){
